@@ -37,18 +37,18 @@ variable "ssh_user" {
   default     = "asxan_agrail"
 }
 
-source "googlecompute" "nginx-reverse-jenkins" {
+source "googlecompute" "nginx" {
   project_id          = "${var.project_id}"
   zone                = "${var.availability_zone}"
   source_image        = "${var.source_image}"
   source_image_family = "${var.image_family}"
   ssh_username        = "${var.ssh_user}"
-  image_name          = "nginx-lb"
+  image_name          = "nginx-lb-https"
   image_description   = "The Centos 9 Nginx host for test load balancing"
 }
 
 build {
-  sources = ["source.googlecompute.nginx-reverse-jenkins"]
+  sources = ["source.googlecompute.nginx"]
 
   provisioner "shell" {
     script = "./scripts/nginx-install.sh"

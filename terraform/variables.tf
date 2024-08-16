@@ -7,7 +7,7 @@ variable "project_id" {
 variable "eu-region" {
   type        = string
   description = "Europe Region"
-  default     = "europe-north1"
+  default     = "europe-west3"
 }
 
 variable "us-region" {

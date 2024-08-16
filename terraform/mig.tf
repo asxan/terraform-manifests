@@ -37,7 +37,7 @@ resource "google_compute_region_instance_group_manager" "prod_mig_us_central1" {
 
   auto_healing_policies {
     health_check      = google_compute_health_check.http_health_check.self_link
-    initial_delay_sec = 300
+    initial_delay_sec = 60
   }
 }
 
@@ -64,7 +64,7 @@ resource "google_compute_region_instance_group_manager" "prod_mig_eu_north1" {
 
   auto_healing_policies {
     health_check      = google_compute_health_check.http_health_check.self_link
-    initial_delay_sec = 300
+    initial_delay_sec = 60
   }
 }
 
@@ -79,9 +79,9 @@ resource "google_compute_region_autoscaler" "prod_autoscaler_us_central1" {
   target      = google_compute_region_instance_group_manager.prod_mig_us_central1.id
 
   autoscaling_policy {
-    max_replicas    = 0
-    min_replicas    = 0
-    cooldown_period = 300
+    max_replicas    = 2
+    min_replicas    = 1
+    cooldown_period = 60
 
     load_balancing_utilization {
       target = 0.8
@@ -101,7 +101,7 @@ resource "google_compute_region_autoscaler" "prod_autoscaler_eu_north1" {
   autoscaling_policy {
     max_replicas    = 0
     min_replicas    = 0
-    cooldown_period = 300
+    cooldown_period = 60
 
     load_balancing_utilization {
       target = 0.8

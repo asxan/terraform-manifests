@@ -28,15 +28,15 @@ resource "google_compute_instance_template" "nginx_template_us_central" {
 }
 
 
-resource "google_compute_instance_template" "nginx_template_europe_north" {
+resource "google_compute_instance_template" "nginx_template_europe_west" {
   depends_on = [
     google_compute_network.prod_network,
     google_compute_subnetwork.prod_subnet_eu_region
   ]
 
-  name         = "nginx-template-europe-north"
+  name         = "nginx-template-europe-west"
   project      = var.project_id
-  machine_type = "e2-highcpu-2"
+  machine_type = "e2-medium"
   tags         = ["prod-vms"]
 
   network_interface {
@@ -45,7 +45,7 @@ resource "google_compute_instance_template" "nginx_template_europe_north" {
   }
 
   disk {
-    disk_name    = "nginx-europe-north1"
+    disk_name    = "nginx-europe-west1"
     source_image = var.image_name
     boot         = true
     disk_size_gb = 20

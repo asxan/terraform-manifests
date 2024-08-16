@@ -2,7 +2,7 @@
 resource "google_compute_backend_service" "prod_us_central_backend" {
   depends_on = [
     google_compute_health_check.http_health_check,
-    google_compute_region_instance_group_manager.prod_mig_eu_north1,
+    google_compute_region_instance_group_manager.prod_mig_eu_west3,
     google_compute_region_instance_group_manager.prod_mig_us_central1
   ]
 
@@ -22,7 +22,7 @@ resource "google_compute_backend_service" "prod_us_central_backend" {
   }
 
   backend {
-    group                 = google_compute_region_instance_group_manager.prod_mig_eu_north1.instance_group
+    group                 = google_compute_region_instance_group_manager.prod_mig_eu_west3.instance_group
     balancing_mode        = "RATE"
     capacity_scaler       = 1
     max_rate_per_instance = 50

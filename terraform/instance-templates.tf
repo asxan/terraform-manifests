@@ -8,7 +8,6 @@ resource "google_compute_instance_template" "nginx_template_us_central" {
   name         = "nginx-template-us-central"
   project      = var.project_id
   machine_type = "e2-medium"
-  provider     = "google-beta"
   tags         = ["prod-vms"]
 
   network_interface {
@@ -24,7 +23,7 @@ resource "google_compute_instance_template" "nginx_template_us_central" {
   }
 
   lifecycle {
-    create_before_destroy = true
+    create_before_destroy = false
   }
 }
 
@@ -37,8 +36,7 @@ resource "google_compute_instance_template" "nginx_template_europe_north" {
 
   name         = "nginx-template-europe-north"
   project      = var.project_id
-  machine_type = "e2-medium"
-  provider     = "google-beta"
+  machine_type = "e2-highcpu-2"
   tags         = ["prod-vms"]
 
   network_interface {
@@ -54,6 +52,6 @@ resource "google_compute_instance_template" "nginx_template_europe_north" {
   }
 
   lifecycle {
-    create_before_destroy = true
+    create_before_destroy = false
   }
 }

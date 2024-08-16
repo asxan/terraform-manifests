@@ -26,6 +26,11 @@ resource "google_compute_region_instance_group_manager" "prod_mig_us_central1" {
   project            = var.project_id
   base_instance_name = "nginx-us"
 
+  named_port {
+    name = "http"
+    port = 80
+  }
+
   version {
     instance_template = google_compute_instance_template.nginx_template_us_central.self_link
   }
@@ -48,6 +53,11 @@ resource "google_compute_region_instance_group_manager" "prod_mig_eu_north1" {
   project            = var.project_id
   base_instance_name = "nginx-eu"
 
+  named_port {
+    name = "http"
+    port = 80
+  }
+
   version {
     instance_template = google_compute_instance_template.nginx_template_europe_north.self_link
   }
@@ -69,8 +79,8 @@ resource "google_compute_region_autoscaler" "prod_autoscaler_us_central1" {
   target      = google_compute_region_instance_group_manager.prod_mig_us_central1.id
 
   autoscaling_policy {
-    max_replicas    = 2
-    min_replicas    = 1
+    max_replicas    = 0
+    min_replicas    = 0
     cooldown_period = 300
 
     load_balancing_utilization {
@@ -89,8 +99,8 @@ resource "google_compute_region_autoscaler" "prod_autoscaler_eu_north1" {
   target      = google_compute_region_instance_group_manager.prod_mig_eu_north1.id
 
   autoscaling_policy {
-    max_replicas    = 2
-    min_replicas    = 1
+    max_replicas    = 0
+    min_replicas    = 0
     cooldown_period = 300
 
     load_balancing_utilization {

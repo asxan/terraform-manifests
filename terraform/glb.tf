@@ -1,7 +1,8 @@
+# Google Cloud Global HTTPS Load Balancer
 
-
-# forwarding rule
-
+# Global forwarding rule for GCP Global HTTPS Load Balancer
+# A forwarding rule specifies how to route network traffic to the backend services of a load balancer.
+#
 resource "google_compute_global_forwarding_rule" "prod_lb_global_forwarding_rule" {
   depends_on = [
     google_compute_target_https_proxy.prod_lb_http_proxy,
@@ -18,7 +19,10 @@ resource "google_compute_global_forwarding_rule" "prod_lb_global_forwarding_rule
 }
 
 
-# http proxy
+# HTTPS target proxy for GCP Global HTTPS Load Balancer
+# Target proxies terminate incoming connections from clients
+# and create new connections from the load balancer to the backends.
+#
 resource "google_compute_target_https_proxy" "prod_lb_http_proxy" {
   depends_on = [
     google_compute_url_map.prod_lb_url_map,
@@ -30,7 +34,10 @@ resource "google_compute_target_https_proxy" "prod_lb_http_proxy" {
   ssl_certificates = [google_compute_ssl_certificate.prod_easyio_tls_certs.id]
 }
 
-# url map
+# URL map for GCP Global HTTPS Load Balancer to map urls with target backends
+# URL map is a set of rules for routing incoming HTTP(S) requests
+# to specific backend services or backend buckets.
+#
 resource "google_compute_url_map" "prod_lb_url_map" {
   depends_on = [
     google_compute_health_check.http_health_check,

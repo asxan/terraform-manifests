@@ -1,3 +1,5 @@
+# Provider versions
+#
 terraform {
   required_providers {
     google = {

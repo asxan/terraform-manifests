@@ -1,4 +1,7 @@
+# Google Compute Load Balancer Backend
 
+# Google Compute Backend for Global HTTPS Load Balancer
+#
 resource "google_compute_backend_service" "prod_us_central_backend" {
   depends_on = [
     google_compute_health_check.http_health_check,

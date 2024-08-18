@@ -1,4 +1,7 @@
+# Google Compute Instance templates
 
+# GCP Compute Engine instance template in us-central1 region
+#
 resource "google_compute_instance_template" "nginx_template_us_central" {
   depends_on = [
     google_compute_network.prod_network,
@@ -28,6 +31,8 @@ resource "google_compute_instance_template" "nginx_template_us_central" {
 }
 
 
+# GCP Compute Engine instance template in europe-west3 region
+#
 resource "google_compute_instance_template" "nginx_template_europe_west" {
   depends_on = [
     google_compute_network.prod_network,

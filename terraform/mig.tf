@@ -1,3 +1,7 @@
+# Manage Instance groups
+
+# GCP global health check to check the health of instances in the MIG's
+#
 resource "google_compute_health_check" "http_health_check" {
   name = "http-health-check"
 
@@ -13,7 +17,8 @@ resource "google_compute_health_check" "http_health_check" {
   }
 }
 
-
+# GCP Managed instance group in us-central region in prod network
+#
 resource "google_compute_region_instance_group_manager" "prod_mig_us_central1" {
   depends_on = [
     google_compute_instance_template.nginx_template_us_central,
@@ -41,7 +46,8 @@ resource "google_compute_region_instance_group_manager" "prod_mig_us_central1" {
   }
 }
 
-
+# GCP Autoscaling policy for MIG in us-central1 region
+#
 resource "google_compute_region_autoscaler" "prod_autoscaler_us_central1" {
   depends_on = [
     google_compute_region_instance_group_manager.prod_mig_us_central1
@@ -62,6 +68,8 @@ resource "google_compute_region_autoscaler" "prod_autoscaler_us_central1" {
   }
 }
 
+# GCP Managed instance group in eu-west3 region in prod network
+#
 resource "google_compute_region_instance_group_manager" "prod_mig_eu_west3" {
   depends_on = [
     google_compute_instance_template.nginx_template_europe_west,
@@ -88,7 +96,8 @@ resource "google_compute_region_instance_group_manager" "prod_mig_eu_west3" {
   }
 }
 
-
+# GCP Autoscaling policy for MIG in eu-west3 region
+#
 resource "google_compute_region_autoscaler" "prod_autoscaler_eu_west3" {
   depends_on = [
     google_compute_region_instance_group_manager.prod_mig_eu_west3

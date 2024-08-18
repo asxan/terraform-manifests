@@ -1,5 +1,8 @@
+# Google Cloud NAT (Network Address Translation) to allow instances access
+# to public network without external IP's
 
-# Cloud Router for Nat Gateway in us-central1
+# Cloud Router to assign to  Nat Gateway in us-central1
+#
 resource "google_compute_router" "prod_net_us_central_nat_router" {
   depends_on = [google_compute_network.prod_network]
   name       = "prod-net-us-central-nat-router"
@@ -9,6 +12,7 @@ resource "google_compute_router" "prod_net_us_central_nat_router" {
 }
 
 # Nat gateway in us-central1
+#
 resource "google_compute_router_nat" "prod_net_us_central_nat" {
   depends_on = [
     google_compute_network.prod_network,
@@ -22,7 +26,8 @@ resource "google_compute_router_nat" "prod_net_us_central_nat" {
 }
 
 
-# Cloud Router for Nat Gateway in europe-west3
+# Cloud Router to assign to  Nat Gateway in europe-west3
+#
 resource "google_compute_router" "prod_net_europe_west_nat_router" {
   depends_on = [
     google_compute_network.prod_network
@@ -34,6 +39,7 @@ resource "google_compute_router" "prod_net_europe_west_nat_router" {
 }
 
 # Nat gateway in europe-west3
+#
 resource "google_compute_router_nat" "prod_net_europe_west_nat" {
   depends_on = [
     google_compute_network.prod_network,

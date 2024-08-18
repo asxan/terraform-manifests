@@ -4,7 +4,7 @@
 
 Load Balancers:
 1. Read the documentation about Load Balancers and watch an official videos from GCP YouTube channel.
-2. Create a new Centos packer image with a unique information, for example IP address of the instance. (Provision your instance with a bash scripts (create Nginx installation as for Debian as for Red-Hat systems in one script)) 
+2. Create a new Centos packer image with a unique information, for example IP address of the instance. (Provision your instance with a bash scripts (create Nginx installation for Red-Hat systems in one script)) 
 3. Create a couple of GCE manage instance group from Nginx(packer) image was created on the previous step. Instance should be located in the two private subnet in different locations(Europe and America). Instances must have access to public internet, but nobody should have access from the public internet. 
 4. Create firewall rule to allow traffic from Load Balancer to the instance in the manage instance group. Also ensure instance can send traffic to each other. Use network tags to allow traffic
 5. Make sure you can login via ssh, but do not use bastion host or VPN for it

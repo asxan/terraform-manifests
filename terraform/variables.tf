@@ -18,12 +18,6 @@ variable "us-region" {
   default     = "us-central1"
 }
 
-variable "image" {
-  type        = string
-  description = "Image for instance"
-  default     = "centos-stream-9-v20240515"
-}
-
 variable "image-family" {
   type        = string
   description = "Image family"

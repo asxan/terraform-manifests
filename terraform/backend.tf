@@ -1,7 +1,7 @@
 terraform {
   backend "gcs" {
-    bucket = "tf-task-3"
-    prefix = "terraform/state"
+    bucket     = "tf-task-3"
+    prefix     = "terraform/state"
     versioning = true
   }
 }

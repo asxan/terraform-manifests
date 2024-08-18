@@ -28,9 +28,9 @@ resource "google_compute_target_https_proxy" "prod_lb_http_proxy" {
     google_compute_url_map.prod_lb_url_map,
     google_compute_ssl_certificate.prod_easyio_tls_certs
   ]
-  name        = "prod-lb-http-proxy"
-  description = "Prod https load balancer target http proxy"
-  url_map     = google_compute_url_map.prod_lb_url_map.id
+  name             = "prod-lb-http-proxy"
+  description      = "Prod https load balancer target http proxy"
+  url_map          = google_compute_url_map.prod_lb_url_map.id
   ssl_certificates = [google_compute_ssl_certificate.prod_easyio_tls_certs.id]
 }
 
